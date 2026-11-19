@@ -17,14 +17,30 @@ export const demoSong: Song = {
       id: "verse-1",
       name: "Verse 1",
       lines: [
-        "Shot through the heart, and you're to blame",
-        "Darlin', you give love a bad name",
+        {
+          id: "line-1",
+          text: "Shot through the heart, and you're to blame",
+          cue: "Sostén el final",
+        },
+        {
+          id: "line-2",
+          text: "Darlin', you give love a bad name",
+        },
       ],
     },
     {
       id: "chorus-1",
       name: "Chorus 1",
-      lines: ["You give love a bad name", "You give love a bad name"],
+      lines: [
+        {
+          id: "line-3",
+          text: "You give love a bad name",
+        },
+        {
+          id: "line-4",
+          text: "You give love a bad name",
+        },
+      ],
     },
     {
       id: "instrumental-break-1",

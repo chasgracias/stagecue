@@ -62,6 +62,45 @@
   scroll-margin-top: 1.5rem;
 }
 
+.textControls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.textControls button {
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.5rem;
+  background: white;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+.textControls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.textControls button:focus-visible {
+  outline: 3px solid #3659d9;
+  outline-offset: 3px;
+}
+
+.lyricLine {
+  margin-bottom: 1.5rem;
+}
+
+.lyrics .cue {
+  margin-bottom: 0.25rem;
+  color: #3659d9;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
 .lyrics {
   font-size: clamp(1.5rem, 4.5vw, 2rem);
   line-height: 1.7;
