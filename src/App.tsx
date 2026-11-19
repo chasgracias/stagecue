@@ -12,7 +12,11 @@ export default function App() {
   return (
     <main>
       {selectedSong ? (
-        <SongView song={selectedSong} onBack={() => setSelectedSongId(null)} />
+        <SongView
+          key={selectedSong.id}
+          song={selectedSong}
+          onBack={() => setSelectedSongId(null)}
+        />
       ) : (
         <SetlistView
           band={demoBand}
