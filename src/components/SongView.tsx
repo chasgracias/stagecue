@@ -84,7 +84,7 @@ export function SongView({ song, onBack }: SongViewProps) {
             Mostrar guía de fraseo
           </label>
 
-          <div className={styles.lyrics}>
+          <div className={styles.lyrics} style={{ fontSize: `${fontSize}px` }}>
             {currentSection.lines.length > 0 ? (
               currentSection.lines.map((line) => (
                 <div key={line.id} className={styles.lyricLine}>

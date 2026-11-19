@@ -93,6 +93,18 @@
   margin-bottom: 1.5rem;
 }
 
+.lyricLine {
+  font-size: inherit;
+}
+
+.lyricLine > p {
+  font-size: inherit;
+}
+
+.lyricLine > .cue {
+  font-size: 0.875rem;
+}
+
 .lyrics .cue {
   margin-bottom: 0.25rem;
   color: #3659d9;

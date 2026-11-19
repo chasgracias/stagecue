@@ -1,26 +1,37 @@
 import { useState } from "react";
 import { SetlistView } from "./components/SetlistView";
 import { SongView } from "./components/SongView";
-import { demoBand, demoSetlists, demoSong } from "./data/demo";
+import { demoBands, demoSetlists, demoSongs } from "./data/demo";
 import styles from "./App.module.css";
 
 export default function App() {
-  const [selectedSongId, setSelectedSongId] = useState<string | null>(null);
+  const [selectedBandId, setSelectedBandId] = useState<string | null>(
+    demoBands[0]?.id ?? null,
+  );
   const [selectedSetlistId, setSelectedSetlistId] = useState<string | null>(
     demoSetlists[0].id ?? null,
   );
+  const [selectedSongId, setSelectedSongId] = useState<string | null>(null);
 
-  const songs = [demoSong];
-
-  const selectedSetlist = demoSetlists.find(
+  const selectedBand = demoBands.find((band) => band.id === selectedBandId);
+  const bandSetlists = demoSetlists.filter(
+    (setlist) => setlist.bandId === selectedBandId,
+  );
+  const bandSongs = demoSongs.filter((song) => song.bandId === selectedBandId);
+  const selectedSetlist = bandSetlists.find(
     (setlist) => setlist.id === selectedSetlistId,
   );
-  const selectedSong = songs.find(
-    (song) =>
-      song.id === selectedSongId &&
-      song.bandId === selectedSetlist?.bandId &&
-      selectedSetlist?.songIds.includes(song.id),
+  const selectedSong = bandSongs.find(
+    (song) => song.id === selectedSongId && selectedSetlist?.songIds.includes(song.id),
   );
+
+  function handleBandChange(bandId: string) {
+    const firstSetlist = demoSetlists.find((setlist) => setlist.bandId === bandId);
+
+    setSelectedBandId(bandId);
+    setSelectedSetlistId(firstSetlist?.id ?? null);
+    setSelectedSongId(null);
+  }
 
   return (
     <main>
@@ -33,20 +44,39 @@ export default function App() {
       ) : (
         <>
           <label className={styles.setlistPicker}>
+            Banda
+            <select
+              value={selectedBandId ?? ""}
+              disabled={demoBands.length === 0}
+              onChange={(event) => handleBandChange(event.target.value)}
+            >
+              {demoBands.length === 0 && (
+                <option value="">Sin bandas disponibles</option>
+              )}
+
+              {demoBands.map((band) => (
+                <option key={band.id} value={band.id}>
+                  {band.name}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label className={styles.setlistPicker}>
             Set
             <select
               value={selectedSetlistId ?? ""}
-              disabled={demoSetlists.length === 0}
+              disabled={bandSetlists.length === 0}
               onChange={(event) => {
                 setSelectedSetlistId(event.target.value);
                 setSelectedSongId(null);
               }}
             >
-              {demoSetlists.length === 0 && (
+              {bandSetlists.length === 0 && (
                 <option value="">Sin sets disponibles</option>
               )}
 
-              {demoSetlists.map((setlist) => (
+              {bandSetlists.map((setlist) => (
                 <option key={setlist.id} value={setlist.id}>
                   {setlist.name}
                 </option>
@@ -54,15 +84,17 @@ export default function App() {
             </select>
           </label>
 
-          {selectedSetlist ? (
+          {!selectedBand ? (
+            <p>No hay bandas disponibles.</p>
+          ) : selectedSetlist ? (
             <SetlistView
-              band={demoBand}
+              band={selectedBand}
               setlist={selectedSetlist}
-              songs={songs}
+              songs={bandSongs}
               onSelectSong={setSelectedSongId}
             />
           ) : (
-            <p>No hay un set seleccionado.</p>
+            <p>Esta banda todavía no tiene sets.</p>
           )}
         </>
       )}
