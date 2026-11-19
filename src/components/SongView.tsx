@@ -10,6 +10,7 @@ interface SongViewProps {
 export function SongView({ song, onBack }: SongViewProps) {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
   const [fontSize, setFontSize] = useState(28);
+  const [showCues, setShowCues] = useState(true);
 
   const sectionHeadingRef = useRef<HTMLHeadingElement>(null);
   const currentSection = song.sections[currentSectionIndex];
@@ -74,11 +75,20 @@ export function SongView({ song, onBack }: SongViewProps) {
             {currentSection.name}
           </h2>
 
+          <label className={styles.cueToggle}>
+            <input
+              type="checkbox"
+              checked={showCues}
+              onChange={(event) => setShowCues(event.target.checked)}
+            />
+            Mostrar guía de fraseo
+          </label>
+
           <div className={styles.lyrics}>
             {currentSection.lines.length > 0 ? (
               currentSection.lines.map((line) => (
                 <div key={line.id} className={styles.lyricLine}>
-                  {line.cue && <p className={styles.cue}>{line.cue}</p>}
+                  {showCues && line.cue && <p className={styles.cue}>{line.cue}</p>}
                   <p>{line.text}</p>
                 </div>
               ))

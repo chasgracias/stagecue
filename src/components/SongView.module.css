@@ -154,7 +154,20 @@
   touch-action: manipulation;
 }
 
+.cueToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 2.75rem;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
+}
 
+.cueToggle input {
+  width: 1.25rem;
+  height: 1.25rem;
+  accent-color: #3659d9;
+}
 
 .navButton:disabled {
   opacity: 0.35;
