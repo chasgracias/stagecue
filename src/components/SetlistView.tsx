@@ -1,20 +1,21 @@
-import type { Band } from '../types/band'
-import type { Setlist } from '../types/setlist'
-import type { Song } from '../types/song'
+import type { Band } from "../types/band";
+import type { Setlist } from "../types/setlist";
+import type { Song } from "../types/song";
 
-interface SetlistViewProps { 
+interface SetlistViewProps {
   band: Band;
   setlist: Setlist;
   songs: Song[];
+  onSelectSong: (songId: string) => void;
 }
 
-export function SetlistView({ band, setlist, songs }: SetlistViewProps) { 
+export function SetlistView({ band, setlist, songs, onSelectSong }: SetlistViewProps) {
   return (
     <section>
       <header>
         <h1>{band.name}</h1>
         <h2>{setlist.name}</h2>
-        
+
         {setlist.date && (
           <p>
             <time dateTime={setlist.date}>{setlist.date}</time>
@@ -23,16 +24,18 @@ export function SetlistView({ band, setlist, songs }: SetlistViewProps) {
       </header>
 
       <ol>
-        {setlist.songIds.map((songId) => { 
-          const song = songs.find(item => item.id === songId);
-          
+        {setlist.songIds.map((songId) => {
+          const song = songs.find((item) => item.id === songId);
+
           return (
             <li key={songId}>
               {song ? (
                 <>
-                  <strong>{song.title}</strong>
-                  {' - '}
-                  <span>{song.artist}</span>
+                  <button type="button" onClick={() => onSelectSong(song.id)}>
+                    <strong>{song.title}</strong>
+                    {" - "}
+                    <span>{song.artist}</span>
+                  </button>
                 </>
               ) : (
                 <span>Canción no encontrada</span>
@@ -42,5 +45,5 @@ export function SetlistView({ band, setlist, songs }: SetlistViewProps) {
         })}
       </ol>
     </section>
-  )
+  );
 }
