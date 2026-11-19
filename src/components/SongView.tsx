@@ -19,6 +19,20 @@ export function SongView({ song, onBack }: SongViewProps) {
 
   return (
     <section className={styles.song}>
+      <label className={styles.sectionPicker}>
+        Sección
+        <select
+          value={currentSectionIndex}
+          onChange={(event) => setCurrentSectionIndex(Number(event.target.value))}
+        >
+          {song.sections.map((section, index) => (
+            <option key={section.id} value={index}>
+              {section.name}
+            </option>
+          ))}
+        </select>
+      </label>
+
       <header className={styles.header}>
         <h1 className={styles.title}>{song.title}</h1>
         <p className={styles.artist}>{song.artist}</p>

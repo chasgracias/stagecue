@@ -30,6 +30,31 @@
   cursor: pointer;
 }
 
+.sectionPicker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: #475569;
+  font-size: 0.875rem;
+}
+
+.sectionPicker select {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.75rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem;
+  background: white;
+  color: #1e293b;
+  font: inherit;
+}
+
+.sectionPicker select:focus-visible {
+  outline: 3px solid #3659d9;
+  outline-offset: 3px;
+}
+
 .sectionTitle {
   margin-block: 0 1.5rem;
   font-size: 1.25rem;
@@ -89,6 +114,8 @@
   cursor: pointer;
   touch-action: manipulation;
 }
+
+
 
 .navButton:disabled {
   opacity: 0.35;
