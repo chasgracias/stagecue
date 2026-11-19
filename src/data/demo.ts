@@ -50,10 +50,19 @@ export const demoSong: Song = {
   ],
 };
 
-export const demoSetlist: Setlist = {
-  id: "demo-setlist-1",
-  bandId: "uxiono",
-  name: "Demo Setlist",
-  date: "2027-06-01",
-  songIds: ["demo-song-1"],
-};
+export const demoSetlists: Setlist[] = [
+  {
+    id: "demo-setlist-1",
+    bandId: "uxiono",
+    name: "Presentación septiembre",
+    date: "2026-09-26",
+    songIds: ["demo-song-1"],
+  },
+  {
+    id: "demo-setlist-2",
+    bandId: "uxiono",
+    name: "Presentación diciembre",
+    date: "2026-12-19",
+    songIds: ["demo-song-1"],
+  },
+];

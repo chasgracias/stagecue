@@ -1,0 +1,97 @@
+.setlist {
+  max-width: 48rem;
+  margin-inline: auto;
+  padding: 1rem 1rem 3rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.bandName {
+  margin: 0;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.setlistName {
+  margin-block: 0.75rem 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #475569;
+}
+
+.date {
+  margin: 0;
+  color: #526075;
+  font-size: 0.875rem;
+}
+
+.songList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  margin: 0;
+  padding-left: 2rem;
+}
+
+.songList li {
+  padding-left: 0.5rem;
+}
+
+.songList li::marker {
+  color: #526075;
+  font-weight: 600;
+}
+
+.songButton {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+
+  width: 100%;
+  min-height: 4.5rem;
+  padding: 1rem;
+
+  border: 1px solid #dbe2ea;
+  border-radius: 0.75rem;
+  background: white;
+  color: #1e293b;
+  text-align: left;
+  cursor: pointer;
+}
+
+.songTitle {
+  font-size: 1rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.songArtist {
+  color: #526075;
+  font-size: 0.875rem;
+}
+
+.songButton:focus-visible {
+  outline: 3px solid #3659d9;
+  outline-offset: 3px;
+}
+
+.songButton:active {
+  background: #eef2ff;
+}
+
+.missing {
+  display: block;
+  padding: 1rem;
+  color: #9a3412;
+}
+
+@media (hover: hover) {
+  .songButton:hover {
+    border-color: #3659d9;
+    background: #f5f7ff;
+  }
+}
