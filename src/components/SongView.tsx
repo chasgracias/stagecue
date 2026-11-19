@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { Song } from "../types/song";
+import styles from "./SongView.module.css";
 
 interface SongViewProps {
   song: Song;
@@ -8,48 +9,63 @@ interface SongViewProps {
 
 export function SongView({ song, onBack }: SongViewProps) {
   const [currentSectionIndex, setCurrentSectionIndex] = useState(0);
+  const sectionHeadingRef = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    sectionHeadingRef.current?.scrollIntoView({ behavior: "instant", block: "start" });
+  }, []);
 
   const currentSection = song.sections[currentSectionIndex];
 
   return (
-    <section>
-      <header>
-        <h1>{song.title}</h1>
-        <p>{song.artist}</p>
-        <button onClick={onBack}>Volver al set</button>
+    <section className={styles.song}>
+      <header className={styles.header}>
+        <h1 className={styles.title}>{song.title}</h1>
+        <p className={styles.artist}>{song.artist}</p>
+        <button className={styles.back} onClick={onBack}>
+          Volver al set
+        </button>
       </header>
 
       {currentSection ? (
         <>
-          <h2>{currentSection.name}</h2>
+          <h2 ref={sectionHeadingRef} className={styles.sectionTitle}>
+            {currentSection.name}
+          </h2>
 
-          {currentSection.lines.length > 0 ? (
-            currentSection.lines.map((line, index) => (
-              <p key={`${currentSection.id}-${index}`}>{line}</p>
-            ))
-          ) : (
-            <p>Sección instrumental</p>
-          )}
+          <div className={styles.lyrics}>
+            {currentSection.lines.length > 0 ? (
+              currentSection.lines.map((line, index) => (
+                <p key={`${currentSection.id}-${index}`}>{line}</p>
+              ))
+            ) : (
+              <p className={styles.message}>Sección instrumental</p>
+            )}
+          </div>
 
-          <nav aria-label="Navegación entre secciones">
+          <nav className={styles.navigation} aria-label="Navegación entre secciones">
             <button
               type="button"
+              className={styles.navButton}
+              aria-label="Sección anterior"
               disabled={currentSectionIndex === 0}
               onClick={() => setCurrentSectionIndex(currentSectionIndex - 1)}
             >
-              Anterior
+              ←
             </button>
 
-            <span>
+            <span className={styles.counter}>
               {currentSectionIndex + 1} / {song.sections.length}
             </span>
 
             <button
               type="button"
+              className={styles.navButton}
+              aria-label="Sección siguiente"
               disabled={currentSectionIndex === song.sections.length - 1}
               onClick={() => setCurrentSectionIndex((index) => index + 1)}
             >
-              Siguiente
+              →
             </button>
           </nav>
         </>

@@ -1,0 +1,109 @@
+.song {
+  max-width: 48rem;
+  margin-inline: auto;
+  padding: 1.5rem 1rem;
+  padding-bottom: calc(8rem + env(safe-area-inset-bottom));
+}
+
+.header {
+  margin-bottom: 2.5rem;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+}
+
+.artist {
+  margin-block: 0.5rem 1rem;
+  color: #526075;
+}
+
+.back {
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0.75rem;
+  background: white;
+  color: #1e293b;
+  cursor: pointer;
+}
+
+.sectionTitle {
+  margin-block: 0 1.5rem;
+  font-size: 1.25rem;
+  color: #475569;
+  scroll-margin-top: 1.5rem;
+}
+
+.lyrics {
+  font-size: clamp(1.5rem, 4.5vw, 2rem);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+.lyrics p {
+  margin-block: 0 1rem;
+  white-space: pre-wrap;
+}
+
+.message {
+  color: #526075;
+  line-height: 1.6;
+}
+
+.navigation {
+  position: fixed;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  width: max-content;
+  max-width: calc(100% - 2rem);
+  padding: 0.5rem;
+  border: 1px solid #dbe2ea;
+  border-radius: 999px;
+  background: white;
+  box-shadow: 0 4px 24px rgb(15 23 42 / 15%);
+}
+
+.navButton {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+
+  width: 3.5rem;
+  height: 3.5rem;
+  border: none;
+  border-radius: 50%;
+
+  background: #3659d9;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.navButton:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.counter {
+  min-width: 3.5rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  color: #475569;
+}
+
+.back:focus-visible,
+.navButton:focus-visible {
+  outline: 3px solid #3659d9;
+  outline-offset: 4px;
+}
